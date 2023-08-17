@@ -1,0 +1,29 @@
+uuid: 178481f1-b82a-4987-ac1e-2fb14d4f8f21
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+    - node.type.blogs
+    - node.type.page
+  module:
+    - admin_toolbar_search
+    - node
+    - toolbar
+id: blogger
+label: Blogger
+weight: 7
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create article content'
+  - 'create blogs content'
+  - 'create page content'
+  - 'delete any blogs content'
+  - 'delete blogs revisions'
+  - 'delete own blogs content'
+  - 'edit any blogs content'
+  - 'edit own blogs content'
+  - 'revert blogs revisions'
+  - 'use admin toolbar search'
+  - 'view blogs revisions'

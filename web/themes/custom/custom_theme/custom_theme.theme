@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the custom_theme theme.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function custom_theme_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'custom_theme/global-js';
+}

@@ -1,0 +1,120 @@
+/* CSS for the Movies content type node */
+.node.node--type-movies {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.node.node--type-movies h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+.node.node--type-movies .node__submitted {
+  font-size: 14px;
+  color: #777;
+}
+
+.node.node--type-movies .node__content {
+  margin-top: 20px;
+}
+
+/* Styling for the movie details section */
+.node.node--type-movies .movie-details {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.node.node--type-movies .movie-details p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.node.node--type-movies .movie-details p:last-child {
+  background-color: yellow;
+}
+
+/* Styling for the movie show timings table */
+.node.node--type-movies .node__show-timings {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+}
+
+.node.node--type-movies .node__show-timings th,
+.node.node--type-movies .node__show-timings td {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.node.node--type-movies .node__show-timings th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.node.node--type-movies .node__show-timings tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.node.node--type-movies .node__show-timings tbody tr:hover {
+  background-color: #e1e1e1;
+}
+
+/* Styling for the movie price */
+.node.node--type-movies .field--name-field-price {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* Styling for the movie image */
+.node.node--type-movies .field--name-field-image img {
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom CSS for the movie timings table */
+.container {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #e3e3e3;
+}
+
+.no-results {
+  font-style: italic;
+  color: #888;
+}
+

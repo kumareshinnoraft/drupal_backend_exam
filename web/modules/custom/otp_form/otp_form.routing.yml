@@ -1,0 +1,7 @@
+otp_form.otp:
+  path: '/otp-form/otp'
+  defaults:
+    _title: 'Otp'
+    _form: 'Drupal\otp_form\Form\OtpForm'
+  requirements:
+    _permission: 'access content'
