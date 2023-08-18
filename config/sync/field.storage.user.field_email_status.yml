@@ -1,0 +1,20 @@
+uuid: 87077808-fb3a-4c29-9bba-c75666dbf0d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_email_status
+field_name: field_email_status
+entity_type: user
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

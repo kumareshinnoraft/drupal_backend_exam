@@ -11,3 +11,17 @@
 function custom_theme_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'custom_theme/global-js';
 }
+
+/**
+ * Implements template_preprocess_node for node templates.
+ */
+function custom_theme_preprocess_node(&$variables) {
+  $current_route = \Drupal::routeMatch()->getRouteName();
+
+  if ($current_route === 'entity.node.canonical') {
+    // Load the Like button form and pass it to the template.
+    $like_button_form = \Drupal::formBuilder()->getForm('Drupal\custom_like_button\Form\LikeButtonForm');
+    $variables['like_button_form'] = $like_button_form;
+
+  }
+}

@@ -1,0 +1,25 @@
+uuid: df5ebdac-17b1-42a9-8c2a-634ef30e7124
+langcode: en
+status: true
+dependencies:
+  module:
+    - custom_like_button
+    - system
+  theme:
+    - custom_theme
+id: custom_theme_relatedblogs
+theme: custom_theme
+region: sidebar_first
+weight: 0
+provider: null
+plugin: custom_like_button_related_blogs
+settings:
+  id: custom_like_button_related_blogs
+  label: 'Related Blogs'
+  label_display: visible
+  provider: custom_like_button
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/node/*'

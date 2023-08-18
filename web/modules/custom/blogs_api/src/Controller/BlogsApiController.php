@@ -24,7 +24,7 @@ class BlogsApiController extends ControllerBase {
   protected $entityTypeManager;
 
   /**
-   * This is a constructor.
+   * This constructor will be used for initializing the objects.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   This will be used to fetch the nodes.

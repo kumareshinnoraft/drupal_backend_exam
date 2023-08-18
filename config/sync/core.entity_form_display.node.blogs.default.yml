@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.blogs.body
     - field.field.node.blogs.field_blog_tags
+    - field.field.node.blogs.likes_count
     - node.type.blogs
   module:
     - path
@@ -85,4 +86,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  likes_count: true

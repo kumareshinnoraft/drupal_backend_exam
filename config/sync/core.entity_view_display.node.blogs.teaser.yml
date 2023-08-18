@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.blogs.body
     - field.field.node.blogs.field_blog_tags
+    - field.field.node.blogs.likes_count
     - node.type.blogs
   module:
     - text
@@ -30,3 +31,4 @@ content:
     region: content
 hidden:
   field_blog_tags: true
+  likes_count: true

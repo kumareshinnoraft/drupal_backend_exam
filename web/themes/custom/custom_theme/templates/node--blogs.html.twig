@@ -1,4 +1,7 @@
 <article{{ attributes }}>
+    {% if like_button_form %}
+  {{ like_button_form }}
+{% endif %}
   <header>
     {{ label }}
     <h2{{ title_attributes }}>{{ node.title.value }}</h2>
