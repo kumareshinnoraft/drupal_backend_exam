@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Blogs module.
+ */
+
+use Drupal\Component\Utility\Random;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function blogs_form_user_register_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $formDisplay = $form_state->getStorage()['form_display'];
+  if ($formDisplay->getMode() === 'author') {
+
+    $roles = user_roles(TRUE);
+    unset($roles['administrator']);
+    unset($roles['content_editor']);
+    unset($roles['author']);
+    unset($roles['authenticated']);
+
+    foreach ($roles as $key => $value) {
+      $options[$key] = $value->label();
+    }
+
+    $form['select_roles'] = [
+      '#type' => 'radios',
+      '#title' => t('select ur domain'),
+      '#description' => t('Specify ur site.'),
+      '#options' => $options,
+      '#attributes' => ['class' => ['select-registration-roles']],
+    ];
+    $form['actions']['submit']['#submit'][] = 'blogs_all_roles';
+  }
+}
+
+/**
+ * Implements callback().
+ */
+function blogs_all_roles(&$form, FormStateInterface $form_state) {
+  $uid = $form_state->getValues()['uid'];
+
+  // Allow select multiple roles.
+  if (is_string($form_state->getValue('select_roles'))) {
+    $select_roles[$form_state->getValue('select_roles')] = $form_state->getValue('select_roles');
+  }
+
+  else {
+    $select_roles = $form_state->getValue('select_roles');
+  }
+  if (!$select_roles) {
+    return;
+  }
+  $config = \Drupal::config('select_registration_roles.settings');
+  $user_config = \Drupal::config('user.settings');
+
+  $approval_roles = $config->get('select_registration_roles_admin_approval');
+
+  // Default user can be active.
+  $set_blocked = FALSE;
+
+  // Set blocked if required globally administrator approval.
+  if ($user_config->get('register') === 'visitors_admin_approval') {
+    $set_blocked = TRUE;
+  }
+
+  $user = User::load($uid);
+  if ($user !== NULL) {
+    foreach ($select_roles as $role_id => $role_name) {
+      if (!empty($role_name)) {
+        $user->addRole($role_id);
+
+        // If one of selected roles required approval, set to blocked.
+        if (!empty($approval_roles[$role_id])) {
+          $set_blocked = TRUE;
+        }
+      }
+    }
+
+    if ($set_blocked) {
+    }
+    else {
+      $user->activate();
+    }
+
+    $random = new Random();
+    $string = $random->string();
+
+    \Drupal::service('state')->set('stored_paths', $string);
+
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'blogs';
+    $key = 'otp';
+    $to = $form_state->getValues()['mail'];
+    $params['message'] = 'Your otp is ' . $string;
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = TRUE;
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    if ($result['result'] !== TRUE) {
+      \Drupal::messenger()->addMessage(t('There was a problem sending your message and it was not sent'),'error');
+
+    }
+    else {
+      \Drupal::messenger()->addMessage(t('Mail sent with otp please verify'), 'status');
+      $response = new RedirectResponse('/otp-form/otp');
+      $response->send();
+    }
+
+    $user->save();
+  }
+}
+
+/**
+ * Callback function.
+ */
+function blogs_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'otp':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['body'][] = $params['message'];
+      break;
+  }
+}

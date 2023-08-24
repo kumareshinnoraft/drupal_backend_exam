@@ -1,0 +1,33 @@
+uuid: a658ec71-0a6a-4d2e-9e2e-a39b78465fec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_full_name
+    - filter.format.plain_text
+  module:
+    - multiple_registration
+    - text
+    - user
+third_party_settings:
+  multiple_registration:
+    user_additional_register_form_required:
+      authenticated: 0
+      author: 0
+    user_additional_register_form:
+      authenticated: 0
+      author: 0
+id: user.user.field_full_name
+field_name: field_full_name
+entity_type: user
+bundle: user
+label: 'Full Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - plain_text
+field_type: text
