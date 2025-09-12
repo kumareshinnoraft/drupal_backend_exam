@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the like_button module.
+ */
+
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_install().
+ */
+function custom_like_button_install() {
+  $field_storage = FieldStorageConfig::create([
+    'field_name' => 'likes_count',
+    'entity_type' => 'node',
+    'type' => 'integer',
+    'settings' => ['unsigned' => TRUE],
+  ]);
+  $field_storage->save();
+
+  $field = FieldConfig::create([
+    'field_name' => 'likes_count',
+    'entity_type' => 'node',
+    'bundle' => 'blogs',
+    'label' => t('Likes'),
+    'settings' => ['unsigned' => TRUE],
+  ]);
+  $field->save();
+}

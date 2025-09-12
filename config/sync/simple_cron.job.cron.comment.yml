@@ -1,0 +1,14 @@
+uuid: cdb9d1f4-01e6-41f3-b1fa-4f9ddbbdec22
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+id: cron.comment
+crontab: '*/15 * * * *'
+plugin: cron
+type: comment
+configuration: {  }
+provider: comment
+single: false
+weight: 0

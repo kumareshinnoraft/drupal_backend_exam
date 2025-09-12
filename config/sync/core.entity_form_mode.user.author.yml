@@ -1,0 +1,10 @@
+uuid: d4641320-bce8-4d4d-a643-d3589aaacb8c
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.author
+label: author
+targetEntityType: user
+cache: true

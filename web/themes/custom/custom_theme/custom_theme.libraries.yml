@@ -1,0 +1,4 @@
+global-js:
+  version: 1.x
+  js:
+    js/script.js: {}

@@ -1,0 +1,5 @@
+name: 'blogs_api'
+type: module
+description: 'This module will throw the api.'
+package: Custom module
+core_version_requirement: ^10

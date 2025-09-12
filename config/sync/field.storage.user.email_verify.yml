@@ -1,0 +1,21 @@
+uuid: 44997134-e7da-4ff2-8df9-765ee1105cdb
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.email_verify
+field_name: email_verify
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,7 @@
+blogs_api.custom:
+  path: '/blogs/api'
+  defaults:
+    _title: 'Custom'
+    _controller: '\Drupal\blogs_api\Controller\BlogsApiController::build'
+  requirements:
+    _permission: 'access content'

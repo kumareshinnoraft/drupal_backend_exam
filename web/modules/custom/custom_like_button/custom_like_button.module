@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * This file will be used for the cron.
+ */
+
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_cron().
+ */
+function custom_like_button_cron() {
+  // Get the timestamp for one year ago.
+  $oneYearAgo = strtotime('-1 day');
+
+  // Load and delete blogs older than one year created by users with the
+  // "Guest Bloggers" role.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'blogs')
+    ->condition('created', $oneYearAgo, '<=')
+    ->accessCheck(TRUE);
+
+  // Retrieve users with the "Guest Bloggers" role.
+  $role_id = 'guest_blogger';
+  $uids = \Drupal::entityQuery('user')
+    ->condition('roles', $role_id)
+    ->accessCheck(TRUE)
+    ->execute();
+
+  if (!empty($uids)) {
+    // Add a condition to filter by author UID.
+    $query->condition('uid', $uids, 'IN');
+  }
+  else {
+    // If no users with the role found, don't execute the query.
+    return;
+  }
+
+  $nids = $query->execute();
+  if (!empty($nids)) {
+    // Load and delete the nodes.
+    $nodes = Node::loadMultiple($nids);
+    foreach ($nodes as $node) {
+      $node->delete();
+    }
+  }
+}

@@ -1,0 +1,22 @@
+roles:
+  bloggers:
+    path: ''
+    url: /user/register/bloggers
+    redirect_path: ''
+    hidden: 0
+    form_mode_register: default
+    form_mode_edit: default
+  guest_bloggers:
+    path: /become-an-author
+    url: /user/register/guest_bloggers
+    redirect_path: /
+    hidden: 0
+    form_mode_register: guest_bloggers
+    form_mode_edit: guest_bloggers
+  author:
+    path: /become-an-author
+    url: /user/register/author
+    redirect_path: /
+    hidden: 0
+    form_mode_register: author
+    form_mode_edit: author

@@ -1,0 +1,49 @@
+uuid: ec3a184c-1b01-4494-92bb-9b140187b461
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - node.type.article
+    - node.type.blogs
+    - node.type.page
+    - taxonomy.vocabulary.tags
+  module:
+    - admin_toolbar_search
+    - block
+    - block_content
+    - devel_generate
+    - node
+    - system
+    - taxonomy
+    - toolbar
+id: guest_blogger
+label: 'Guest Blogger'
+weight: 8
+is_admin: null
+permissions:
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer blocks'
+  - 'administer devel_generate'
+  - 'administer menu'
+  - 'administer modules'
+  - 'administer taxonomy'
+  - 'create basic block content'
+  - 'create blogs content'
+  - 'create terms in tags'
+  - 'delete any article content'
+  - 'delete any basic block content'
+  - 'delete any basic block content revisions'
+  - 'delete any blogs content'
+  - 'delete any page content'
+  - 'delete blogs revisions'
+  - 'delete own blogs content'
+  - 'delete terms in tags'
+  - 'edit any basic block content'
+  - 'edit any blogs content'
+  - 'edit own blogs content'
+  - 'edit terms in tags'
+  - 'revert blogs revisions'
+  - 'use admin toolbar search'
+  - 'view blogs revisions'

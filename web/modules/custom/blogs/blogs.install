@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the like_button module.
+ */
+
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_install().
+ */
+function blogs_install() {
+  $field_storage = FieldStorageConfig::create([
+    'field_name' => 'email_verify',
+    'entity_type' => 'user',
+    'type' => 'string',
+    'settings' => ['unsigned' => TRUE],
+  ]);
+  $field_storage->save();
+
+  $field = FieldConfig::create([
+    'field_name' => 'email_verify',
+    'entity_type' => 'user',
+    'bundle' => 'user',
+    'label' => t('Email verify'),
+    'settings' => ['unsigned' => TRUE],
+  ]);
+  $field->save();
+}

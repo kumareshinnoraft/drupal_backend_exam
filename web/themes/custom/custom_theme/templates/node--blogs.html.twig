@@ -1,0 +1,57 @@
+<article{{ attributes }}>
+    {% if like_button_form %}
+  {{ like_button_form }}
+{% endif %}
+  <header>
+    {{ label }}
+    <h2{{ title_attributes }}>{{ node.title.value }}</h2>
+  </header>
+  <div{{ content_attributes }}>
+    {% set body_text = content.body[0]['#text'] %}
+    <div class="content">
+      {% if body_text|split(' ')|length > 50 %}
+        <div class="trimmed-content">{{ body_text|split(' ')|slice(0, 50)|join(' ') ~ '...' }}</div>
+        <div class="full-content" style="display: none;">{{ body_text }}</div>
+        <a href="#" class="read-more">Read more</a>
+        <a href="#" class="show-less" style="display: none;">Show less</a>
+      {% else %}
+        {{ body_text }}
+      {% endif %}
+    </div>
+  </div>
+</article>
+
+<script>
+  (function () {
+    var readMoreButtons = document.querySelectorAll('.read-more');
+    var showLessButtons = document.querySelectorAll('.show-less');
+
+    readMoreButtons.forEach(function (button) {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        var contentContainer = button.closest('.content');
+        var trimmedContent = contentContainer.querySelector('.trimmed-content');
+        var fullContent = contentContainer.querySelector('.full-content');
+        var showLessButton = contentContainer.querySelector('.show-less');
+        trimmedContent.style.display = 'none';
+        fullContent.style.display = 'block';
+        showLessButton.style.display = 'inline';
+        button.style.display = 'none';
+      });
+    });
+
+    showLessButtons.forEach(function (button) {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        var contentContainer = button.closest('.content');
+        var trimmedContent = contentContainer.querySelector('.trimmed-content');
+        var fullContent = contentContainer.querySelector('.full-content');
+        var readMoreButton = contentContainer.querySelector('.read-more');
+        trimmedContent.style.display = 'block';
+        fullContent.style.display = 'none';
+        readMoreButton.style.display = 'inline';
+        button.style.display = 'none';
+      });
+    });
+  })();
+</script>

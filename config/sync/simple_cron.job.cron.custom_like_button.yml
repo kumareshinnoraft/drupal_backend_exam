@@ -1,0 +1,14 @@
+uuid: 866ea92c-c5a5-4b79-922a-023965803914
+langcode: en
+status: true
+dependencies:
+  module:
+    - custom_like_button
+id: cron.custom_like_button
+crontab: '*/15 * * * *'
+plugin: cron
+type: custom_like_button
+configuration: {  }
+provider: custom_like_button
+single: false
+weight: 0
