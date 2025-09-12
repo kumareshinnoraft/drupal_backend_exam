@@ -2,4 +2,4 @@ name: 'Blogs'
 type: module
 description: 'This module will show different blogs.'
 package: Custom Module
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11

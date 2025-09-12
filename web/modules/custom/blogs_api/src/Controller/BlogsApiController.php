@@ -108,7 +108,7 @@ class BlogsApiController extends ControllerBase {
       $tag_names = [];
 
       foreach ($tags as $tag) {
-        $terms = $this->entityTypeManager->getStorage('taxonomy_term')->load($tag['target_id']);
+        $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tag['target_id']);
         if ($term) {
           $tag_names[] = $term->getName();
         }
